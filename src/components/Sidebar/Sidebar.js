@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./sidebar.css";
 import SidebarOptions from "./SidebarOptions";
 import InboxIcon from "@mui/icons-material/Inbox";

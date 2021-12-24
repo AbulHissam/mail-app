@@ -8,7 +8,6 @@ import { sectionSelector } from "../../features/sectionSlice";
 
 function Email() {
   const navigate = useNavigate();
-  // const selectedMail = useSelector(selectedMailSelector);
   const section = useSelector(sectionSelector);
   let selectedMail = JSON.parse(sessionStorage.mail);
 
