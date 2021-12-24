@@ -1,0 +1,23 @@
+.email {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 3px 2px 0px rgba(222, 213, 213, 0.75);
+}
+.email > button {
+  height: 50px;
+  width: 50px;
+  border: none;
+  border-radius: 50%;
+}
+.email__subject {
+  display: flex;
+  align-items: center;
+}
+.email__subject > span {
+  background-color: gold;
+  border-radius: 5px;
+  padding: 0 5px;
+  margin-left: 10px;
+}
