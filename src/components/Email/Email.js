@@ -3,7 +3,6 @@ import "./email.css";
 import { useNavigate } from "react-router-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { useSelector } from "react-redux";
-import { selectedMailSelector } from "../../features/mailDataSlice";
 import { sectionSelector } from "../../features/sectionSlice";
 
 function Email() {
