@@ -10,13 +10,13 @@ function Email() {
   const section = useSelector(sectionSelector);
   let selectedMail = JSON.parse(sessionStorage.mail);
 
-  // console.log(selectedMail);
   return (
     <>
       <div className="email">
         <button
           onClick={() => {
             navigate("/");
+            // When section is all mails,then display filters and clear
             section === "all mails" &&
               (document.getElementsByClassName(
                 "select-filters"
@@ -24,7 +24,6 @@ function Email() {
               (document.getElementsByClassName(
                 "clear-button"
               )[0].style.display = "block");
-            // selectedMail && sessionStorage.removeItem("mail");
           }}
         >
           <KeyboardBackspaceIcon />
