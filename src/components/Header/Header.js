@@ -28,6 +28,8 @@ function Header() {
 
   const onClearSearchHandler = () => {
     searchResultsRef.current.style.display = "none";
+    searchRef.current.value = "";
+    setSearchTerm("");
   };
 
   const onFocusHandler = (e) => {
@@ -38,6 +40,8 @@ function Header() {
   const onSearchResultClickHandler = (mail) => {
     dispatch(setSelectedMail(mail));
     searchResultsRef.current.style.display = "none";
+    searchRef.current.value = "";
+    setSearchTerm("");
     navigate("/mail");
   };
 
