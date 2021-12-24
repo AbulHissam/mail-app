@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Try to fetch from local storage.If available use that value else set what should be the default value to sessionStorage
 let filtersFromStorage;
 try {
   filtersFromStorage = JSON.parse(sessionStorage.getItem("filtersFromStorage"));
@@ -9,7 +10,6 @@ try {
       sessionStorage.getItem("filtersFromStorage")
     );
   }
-  console.log(filtersFromStorage);
 } catch (err) {}
 
 export const mailDataSlice = createSlice({
@@ -27,12 +27,14 @@ export const mailDataSlice = createSlice({
       state.selectedMail = {
         ...action.payload,
       };
+      // set the selected mail to session storage when this action is dispatched from the components
       sessionStorage.setItem("mail", JSON.stringify(state.selectedMail));
     },
     updateFilters: (state, action) => {
       state.filters = action.payload.filters.map((f) => {
         return f.value;
       });
+      // whenever an filter is chose and an action is dispatched set that to sessionStorage
       sessionStorage.setItem(
         "filtersFromStorage",
         JSON.stringify(state.filters)

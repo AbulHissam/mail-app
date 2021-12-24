@@ -10,6 +10,9 @@ function EmailList() {
   const mailData = useSelector(mailDataSelector);
   const filters = useSelector(filterSelector);
 
+  // When section is all mails and when there are no filters return all the mails
+  // When section is and when there are filters return only the mails with tag that matches the filter
+  // When section is not all mails return the mails where their tag equals to current selected section
   const filterMails = () => {
     return section === "all mails"
       ? mailData.filter((mail) => {

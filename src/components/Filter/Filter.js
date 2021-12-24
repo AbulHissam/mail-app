@@ -17,6 +17,8 @@ function Filter() {
 
   const [appliedFilters, setAppliedFilters] = useState([]);
 
+  // This is to display the selected filters in the select component
+  // Try to fetch from local storage.If available use that value else set what should be the default value to sessionStorage
   let displayFilters = [];
   try {
     displayFilters = JSON.parse(sessionStorage.getItem("filtersDisplay"));
@@ -26,6 +28,7 @@ function Filter() {
     }
   } catch (err) {}
 
+  // Clear the filters to displayed in the select menu and the filters from the session storage
   const onClickHandler = () => {
     try {
       sessionStorage.removeItem("filtersFromStorage");

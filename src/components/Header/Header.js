@@ -26,6 +26,10 @@ function Header() {
     setSearchTerm(e.target.value);
   };
 
+  const onClearSearchHandler = () => {
+    searchResultsRef.current.style.display = "none";
+  };
+
   const onFocusHandler = (e) => {
     e.preventDefault();
     searchResultsRef.current.style.display = "flex";
@@ -60,6 +64,9 @@ function Header() {
           onChange={onChangeHandler}
           onFocus={onFocusHandler}
         />
+        <button className="clear-search" onClick={onClearSearchHandler}>
+          X
+        </button>
         <div className="header__searchResults" ref={searchResultsRef}>
           {filterMailsForSearch().map((mail) => {
             return (

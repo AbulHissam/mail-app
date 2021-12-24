@@ -10,6 +10,8 @@ function EmailRow({ id, subject, tag, body }) {
   const dispatch = useDispatch();
   const section = useSelector(sectionSelector);
 
+  // When a mail is clicked dispatch selected mail and navigate to mail page
+  // When mail screen is open hide filter and clear
   const handleRowClick = () => {
     let mail = {
       id,
