@@ -4,36 +4,31 @@ import { useNavigate } from "react-router-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { useSelector } from "react-redux";
 import { sectionSelector } from "../../features/sectionSlice";
-
+import { mailDataSelector } from "../../features/mailDataSlice";
+import { useParams } from "react-router-dom";
 function Email() {
-  const navigate = useNavigate();
-  const section = useSelector(sectionSelector);
+  // const navigate = useNavigate();
+  // const section = useSelector(sectionSelector);
   let selectedMail = JSON.parse(sessionStorage.mail);
+  let mailData = useSelector(mailDataSelector);
+  let params = useParams();
+
+  const findMail = (emailId) => {
+    return mailData.find((mail) => {
+      return mail.id === emailId;
+    });
+  };
+  let mail = findMail(parseInt(params.emailId));
 
   return (
     <>
       <div className="email">
-        <button
-          onClick={() => {
-            navigate("/");
-            // When section is all mails,then display filters and clear
-            section === "all mails" &&
-              (document.getElementsByClassName(
-                "select-filters"
-              )[0].style.display = "block") &&
-              (document.getElementsByClassName(
-                "clear-button"
-              )[0].style.display = "block");
-          }}
-        >
-          <KeyboardBackspaceIcon />
-        </button>
         <div className="email__content">
           <div className="email__subject">
-            <h4>{selectedMail?.subject}</h4>
-            <span>{selectedMail?.tag}</span>
+            <h4>{mail?.subject}</h4>
+            <span>{mail?.tag}</span>
           </div>
-          <p>{selectedMail?.body}</p>
+          <p>{mail?.body}</p>
         </div>
       </div>
     </>
@@ -41,3 +36,20 @@ function Email() {
 }
 
 export default Email;
+{
+  /* <button
+onClick={() => {
+  navigate("/");
+  // When section is all mails,then display filters and clear
+  section === "all mails" &&
+    (document.getElementsByClassName(
+      "select-filters"
+    )[0].style.display = "block") &&
+    (document.getElementsByClassName(
+      "clear-button"
+    )[0].style.display = "block");
+}}
+>
+<KeyboardBackspaceIcon />
+</button> */
+}
