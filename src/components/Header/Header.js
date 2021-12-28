@@ -56,9 +56,7 @@ function Header() {
   const filterMailsForSearch = () => {
     return mails.filter((mail) => {
       let filters = searchParam.get("filter");
-      if (section === "all mails") {
-        return mail && mail.subject.includes(filters);
-      }
+      return mail.tag === section && mail.subject.includes(filters);
     });
   };
 
