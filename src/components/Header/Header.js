@@ -12,8 +12,7 @@ import Filter from "../Filter/Filter";
 import { useSearchParams } from "react-router-dom";
 
 function Header() {
-  const [searchTerm, setSearchTerm] = useState("");
-
+  // React router
   const [searchParam, setSearchParam] = useSearchParams();
 
   let navigate = useNavigate();
@@ -32,7 +31,6 @@ function Header() {
     } else {
       setSearchParam({});
     }
-    setSearchTerm(e.target.value);
   };
 
   const onClearSearchHandler = () => {
@@ -54,8 +52,10 @@ function Header() {
   };
 
   const filterMailsForSearch = () => {
+    let filters = searchParam.get("filter");
+    if (section === "all mails")
+      return mails.filter((mail) => mail.subject.includes(filters));
     return mails.filter((mail) => {
-      let filters = searchParam.get("filter");
       return mail.tag === section && mail.subject.includes(filters);
     });
   };

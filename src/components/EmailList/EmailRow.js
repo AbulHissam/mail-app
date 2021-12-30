@@ -1,6 +1,6 @@
 import React from "react";
 import "./emailRow.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedMail } from "../../features/mailDataSlice";
 import { sectionSelector } from "../../features/sectionSlice";
