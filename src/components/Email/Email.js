@@ -36,20 +36,3 @@ function Email() {
 }
 
 export default Email;
-{
-  /* <button
-onClick={() => {
-  navigate("/");
-  // When section is all mails,then display filters and clear
-  section === "all mails" &&
-    (document.getElementsByClassName(
-      "select-filters"
-    )[0].style.display = "block") &&
-    (document.getElementsByClassName(
-      "clear-button"
-    )[0].style.display = "block");
-}}
->
-<KeyboardBackspaceIcon />
-</button> */
-}
