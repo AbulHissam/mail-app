@@ -2,7 +2,12 @@ import React, { useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Outlet,
+} from "react-router-dom";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Email from "./components/Email/Email";
@@ -34,10 +39,11 @@ function App() {
         <div className="app__body">
           <Sidebar />
           <Routes>
-            <Route path="/mail" element={<Email />} />
             <Route path="/" element={<EmailList />} />
+            <Route path=":emailId" element={<Email />} />
           </Routes>
         </div>
+        <Outlet />
       </Router>
     </div>
   );

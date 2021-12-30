@@ -9,9 +9,12 @@ import {
 } from "../../features/mailDataSlice";
 import { sectionSelector } from "../../features/sectionSlice";
 import Filter from "../Filter/Filter";
+import { useSearchParams } from "react-router-dom";
 
 function Header() {
   const [searchTerm, setSearchTerm] = useState("");
+
+  const [searchParam, setSearchParam] = useSearchParams();
 
   let navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,11 +26,19 @@ function Header() {
   const searchRef = useRef();
 
   const onChangeHandler = (e) => {
+    let filter = e.target.value;
+    if (filter) {
+      setSearchParam({ filter });
+    } else {
+      setSearchParam({});
+    }
     setSearchTerm(e.target.value);
   };
 
   const onClearSearchHandler = () => {
     searchResultsRef.current.style.display = "none";
+    searchRef.current.value = "";
+    setSearchParam({});
   };
 
   const onFocusHandler = (e) => {
@@ -38,18 +49,14 @@ function Header() {
   const onSearchResultClickHandler = (mail) => {
     dispatch(setSelectedMail(mail));
     searchResultsRef.current.style.display = "none";
-    navigate("/mail");
+    searchRef.current.value = "";
+    navigate(`/${mail.id}`);
   };
 
   const filterMailsForSearch = () => {
     return mails.filter((mail) => {
-      if (section === "all mails") {
-        return mail && mail.subject.includes(searchTerm);
-      } else if (searchTerm === "") {
-        return mail.tag === section;
-      } else if (mail.tag === section && mail.subject.includes(searchTerm)) {
-        return true;
-      }
+      let filters = searchParam.get("filter");
+      return mail.tag === section && mail.subject.includes(filters);
     });
   };
 
