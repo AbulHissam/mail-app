@@ -1,13 +1,11 @@
 import React from "react";
 import "./emailRow.css";
-import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { setSelectedMail } from "../../features/mailDataSlice";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { sectionSelector } from "../../features/sectionSlice";
 
 function EmailRow({ id, subject, tag, body }) {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const section = useSelector(sectionSelector);
 
   // When a mail is clicked dispatch selected mail and navigate to mail page
@@ -19,7 +17,6 @@ function EmailRow({ id, subject, tag, body }) {
       subject,
       body,
     };
-    dispatch(setSelectedMail(mail));
     navigate(`/${mail.id}`);
     section === "all mails" &&
       (document.getElementsByClassName("select-filters")[0].style.display =
